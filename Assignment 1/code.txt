@@ -1,0 +1,19 @@
+endAt = 7.7 // Note that an identifier is used without definition
+	 	// Also note that there is no semicolon
+startFrom = 0
+fiblast = 1
+fibsecondLast = 1
+while(startFrom < endAt){
+	sibnext = fiblast + fibsecondLast
+	fibsecondLast = fiblast
+	fiblast = fibnext
+	startFrom = startFrom + 1
+	if(startFrom + 1 == 10){
+		printf("this");
+		break
+	}
+	if
+}
+
+print(fiblast) //prints the value of the seventh digit
+	       //of the Fibonacci series
