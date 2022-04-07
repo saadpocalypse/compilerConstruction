@@ -130,7 +130,7 @@ int compDFA(char current_symbol);
 int roundedDFA(char current_symbol);
 bool runDFA(char *lexeme,void(*TransTable)(),int(*DFA)(char));
 void appendTokenOutput(char *lexeme);
-void appendSymbolTable(char *lexeme, int value);
+void appendSymbolTable(char *lexeme);
 
 int main(){
     FILE* fptr;
@@ -276,55 +276,47 @@ void lexemeToDFA(int starting, int ending, char *bufferArray){
     char output[1000] = {'\0'};
     if (ifResult == true){
         appendTokenOutput(lexeme);
-        appendSymbolTable(lexeme, 0);
         printf("TOKEN:if\nTOKEN TYPE: KEYWORD\n");
         return;
     }
     if (whileResult == true){
         appendTokenOutput(lexeme);
-        appendSymbolTable(lexeme, 0);
         printf("TOKEN:while\nTOKEN TYPE: KEYWORD\n");
         return;
     }
     if (breakResult == true){
         appendTokenOutput(lexeme);
-        appendSymbolTable(lexeme, 0);
         printf("TOKEN:break\nTOKEN TYPE: KEYWORD\n");
         return;
     }
     if (printResult == true){
         appendTokenOutput(lexeme);
-        appendSymbolTable(lexeme, 0);
         printf("TOKEN:print\nTOKEN TYPE: KEYWORD\n");
         return;
     }
     if (floatResult == true){
         appendTokenOutput(lexeme);
-        appendSymbolTable(lexeme, 1);
+        appendSymbolTable(lexeme);
         printf("TOKEN:%s\nTOKEN TYPE: FLOAT\n",lexeme);
         return;
     }
     if (compResult == true){
         appendTokenOutput(lexeme);
-        appendSymbolTable(lexeme, 0);
         printf("TOKEN:%s\nTOKEN TYPE: COMPARISON OP\n",lexeme);
         return;
     }
     if (mathResult == true){
         appendTokenOutput(lexeme);
-        appendSymbolTable(lexeme, 0);
         printf("TOKEN:%s\nTOKEN TYPE: OP\n",lexeme);
         return;
     }
     if (roundResult == true){
         appendTokenOutput(lexeme);
-        appendSymbolTable(lexeme, 0);
         printf("TOKEN:%s\nTOKEN TYPE: BRACKET\n",lexeme);
         return;
     }
     if (curlyResult == true){
         appendTokenOutput(lexeme);
-        appendSymbolTable(lexeme, 0);
         printf("TOKEN:%s\nTOKEN TYPE: CURLY BRACKET\n",lexeme);
         return;
     }
@@ -336,7 +328,6 @@ void lexemeToDFA(int starting, int ending, char *bufferArray){
             }
         }
         appendTokenOutput(lexeme);
-        appendSymbolTable(lexeme, 0);
 
         strcpy(recognizedIdentifers[recognizedIdentifersCount],lexeme);
         recognizedIdentifersCount++;
@@ -371,7 +362,7 @@ void appendTokenOutput(char *lexeme){
     tokenOutputCount++;
 }
 
-void appendSymbolTable(char *lexeme, int value){
+void appendSymbolTable(char *lexeme){
     if(symbolTableCount == 0){
         //Handles adding coloumn labels at the start
         char labels[16] = {'#','n','o','\t','T','o','k','e','n','\t','V','a','l','u','e','\n'};
@@ -392,29 +383,16 @@ void appendSymbolTable(char *lexeme, int value){
     symbolTableCount++;
 
     //Checks if it is a float 
-    if(value == 1){
-        //Handles adding float to the symbol table
-        char floaty[11] = {'F','L','O','A','T','_','T','O','K','E','N'};
-        for (int i = 0; i < strlen(floaty); i++){
-            symbolTable[symbolTableCount] = floaty[i];
-            symbolTableCount++;
-        }
-        symbolTable[symbolTableCount] = '\t';
+    //Handles adding float to the symbol table
+    char floaty[11] = {'F','L','O','A','T','_','T','O','K','E','N'};
+    for (int i = 0; i < strlen(floaty); i++){
+        symbolTable[symbolTableCount] = floaty[i];
         symbolTableCount++;
-        for (int i = 0; i < strlen(lexeme); i++){
-            symbolTable[symbolTableCount] = lexeme[i];
-            symbolTableCount++;
-        }
     }
-    else{
-        //Handles adding everthing else to the symbol table
-        for (int i = 0; i < strlen(lexeme); i++){
-            symbolTable[symbolTableCount] = lexeme[i];
-            symbolTableCount++;
-        }
-        symbolTable[symbolTableCount] = '\t';
-        symbolTableCount++;
-        symbolTable[symbolTableCount] = '-';
+    symbolTable[symbolTableCount] = '\t';
+    symbolTableCount++;
+    for (int i = 0; i < strlen(lexeme); i++){
+        symbolTable[symbolTableCount] = lexeme[i];
         symbolTableCount++;
     }
 
