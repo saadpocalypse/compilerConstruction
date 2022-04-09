@@ -14,7 +14,6 @@ Create a lexical analyzer without using any existing code or tool. Your code sho
 | (, )     | Start or end of an 'if' condition or a while loop       |
 | {, }  | Start and end of a comparison statement      |
 
-
 ## Rules
 1. Only float data type is supported.
 2. Float values may be stored in identifiers.
@@ -44,4 +43,5 @@ print(fib last) //prints the value of seventh digit
                // of the Fibonacci series.
 
 ```
+
 
