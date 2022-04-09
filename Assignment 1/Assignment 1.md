@@ -44,4 +44,8 @@ print(fib last) //prints the value of seventh digit
 
 ```
 
+## Output
+The program output should produce two files:
+1. The 'output' file that contains all the tokens.
+2. The 'symbol table' file which shows the structure of the table being formed.
 
