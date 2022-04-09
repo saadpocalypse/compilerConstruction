@@ -17,6 +17,6 @@ Create a lexical analyzer without using any existing code or tool. Your code sho
 
 ## Rules
 * Only float data type is supported.
-* Float value may be stored in an identifier.
+* Float values may be stored in identifiers.
 * Valid identifers start with a letter and can be followed by any combination of letters and/or numbers.
 * New line is considered the end of the line, no restrictions are to be applied for a semi-colon.
