@@ -12,3 +12,5 @@ Lab 2 is also regarding file manipulation and C's _malloc()_ function. Markdown 
 
 ## Lab 3
 Lab 3 is regarding simulation of DFAs. Markdown file inside the folder has the complete information.
+
+# trial infinite file is file handling portion, it is not done, I am working on it.
